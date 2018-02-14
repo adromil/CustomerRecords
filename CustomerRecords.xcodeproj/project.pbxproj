@@ -12,7 +12,7 @@
 		6044431C2033E6A70033597F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6044431A2033E6A70033597F /* Main.storyboard */; };
 		6044431E2033E6A70033597F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6044431D2033E6A70033597F /* Assets.xcassets */; };
 		604443212033E6A70033597F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6044431F2033E6A70033597F /* LaunchScreen.storyboard */; };
-		604443292033E7B00033597F /* gistfile1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 604443282033E7B00033597F /* gistfile1.txt */; };
+		60444330203445840033597F /* gistfile1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6044432F203445840033597F /* gistfile1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		6044431D2033E6A70033597F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		604443202033E6A70033597F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		604443222033E6A70033597F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		604443282033E7B00033597F /* gistfile1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gistfile1.txt; sourceTree = "<group>"; };
+		6044432F203445840033597F /* gistfile1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gistfile1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 		6044432A2033E7B90033597F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				604443282033E7B00033597F /* gistfile1.txt */,
+				6044432F203445840033597F /* gistfile1.txt */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -137,7 +137,7 @@
 				604443212033E6A70033597F /* LaunchScreen.storyboard in Resources */,
 				6044431E2033E6A70033597F /* Assets.xcassets in Resources */,
 				6044431C2033E6A70033597F /* Main.storyboard in Resources */,
-				604443292033E7B00033597F /* gistfile1.txt in Resources */,
+				60444330203445840033597F /* gistfile1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

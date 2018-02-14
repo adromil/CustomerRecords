@@ -13,13 +13,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var customerTableView: UITableView!
     
     var customers: [[String: Any]] = []
-    let locMgr: CLLocationManager = CLLocationManager()
+    var isEmpty = false
     
     let center: CLLocation = CLLocation.init(latitude: 53.339428, longitude: -6.257664)
     let distanceKMLimit: CLLocationDistance = 100.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customerTableView.allowsSelection = false
         customers = getCustomers(within: distanceKMLimit)
     }
 
@@ -34,22 +35,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(customers.count)
+        if (customers.count < 1) {
+            isEmpty = true
+            return 1
+        }
         return customers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "CustomerCell"
         let cell = customerTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = customers[indexPath.row]["name"] as? String
-        cell.detailTextLabel?.text = String(describing: customers[indexPath.row]["user_id"]!)
+        if isEmpty {
+            cell.textLabel?.text = "No Records Founds"
+            cell.detailTextLabel?.text = ""
+        } else {
+            cell.textLabel?.text = customers[indexPath.row]["name"] as? String
+            cell.detailTextLabel?.text = "User ID: \(String(describing: customers[indexPath.row]["user_id"]!))"
+        }
         return cell
     }
     
     // MARK: UITableView delegate
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Customer Records (within 100km)"
+        return "Customer Records (within \(NSNumber(value: distanceKMLimit).intValue) km)"
     }
     
     // MARK: Custom methods
@@ -62,20 +71,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let custStrings = dataString.components(separatedBy: .newlines)
                 print(custStrings.count)
                 for custString: String in custStrings {
-                    let custDictionary = try! JSONSerialization.jsonObject(with: custString.data(using: String.Encoding.utf8)!, options: []) as! [String: Any]
-                    let lat: Double =  (custDictionary["latitude"] as! NSString).doubleValue
-                    let long: Double = (custDictionary["longitude"] as! NSString).doubleValue
-                    let loc: CLLocation = CLLocation.init(latitude: lat, longitude: long)
-                    
-                    let locDistance: CLLocationDistance = loc.distance(from: center) / 1000
-                    
-                    if locDistance <= distance {
-                        custArray.append(custDictionary)
+                    if custString.trimmingCharacters(in: .whitespaces) != "" {
+                        let custDictionary = try! JSONSerialization.jsonObject(with: custString.data(using: String.Encoding.utf8)!, options: []) as! [String: Any]
+                        let lat: Double =  (custDictionary["latitude"] as! NSString).doubleValue
+                        let long: Double = (custDictionary["longitude"] as! NSString).doubleValue
+                        let loc: CLLocation = CLLocation.init(latitude: lat, longitude: long)
+                        
+                        // Convert
+                        let locDistance: CLLocationDistance = loc.distance(from: center) / 1000
+                        
+                        if locDistance <= distance {
+                            custArray.append(custDictionary)
+                        }
                     }
-                    custArray.sort(by: { (a, b) -> Bool in
-                        return (a["user_id"] as! Int) < (b["user_id"] as! Int)
-                    })
                 }
+                custArray.sort(by: { (a, b) -> Bool in
+                    return (a["user_id"] as! Int) < (b["user_id"] as! Int)
+                })
             } catch {
                 print(error)
             }
