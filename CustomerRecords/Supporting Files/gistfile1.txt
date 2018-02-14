@@ -29,5 +29,4 @@
 {"latitude": "53.74452", "user_id": 29, "name": "Oliver Ahearn", "longitude": "-7.11167"}
 {"latitude": "53.761389", "user_id": 30, "name": "Nick Enright", "longitude": "-7.2875"}
 {"latitude": "54.080556", "user_id": 23, "name": "Eoin Gallagher", "longitude": "-6.361944"}
-///oooo0o0jso idsdh shd sdjlskjdl skjdlskjd lskjd ls
 {"latitude": "52.833502", "user_id": 25, "name": "David Behan", "longitude": "-8.522366"}
